@@ -4,6 +4,12 @@
 
 ### 0. 環境構築に関すること
 
+こちらは、環境構築ならびに自分のlocal環境下で発生した問題とその解決までの備忘録を含めた一番最初の手順になります。
+
+※ 過去に残っていたReact環境(ReactNative環境)での設定が残っていたことで発生したものと推測しています。
+
+#### 0-1. トラブルシューティングと新しい環境での準備
+
 `create-react-app`が既にインストールされていたが、バージョンが古かったことが原因で新規プロジェクトが作成されませんでした。
 
 ※ 下記の様なログが出てしまいました。
@@ -26,6 +32,8 @@ $ rm -rf /usr/local/bin/create-react-app
 ```
 
 というわけで、再度インストールし直してみましょう。そしてついでにyarnも一緒に入れておきましょう。
+
+#### 0-2. 最初に動かすためのプロジェクトを作成する
 
 ```shell
 # 1. コマンドで削除を試みる
@@ -50,16 +58,35 @@ __【参考】__
 $ npx create-react-app story-show-cases --template typescript
 ```
 
-プロジェクトが生成されたので、次はパッケージ管理ツールの`yarn`を利用するための準備をする。
+プロジェクトが生成されたので、次はパッケージ管理ツールの`yarn`を利用するための準備をします。
 
 ```shell
 # 1. yarnコマンドの実行（※実行後にyarn.lockファイルが生成される）
 $ yarn
-# 2. ビルドコマンドの実行（※実行後にlocalhost:3000でページが表示される）
+# 2. startコマンドの実行（※実行後にlocalhost:3000でページが表示される）
 $ yarn start
 ```
 
-そして次にESLint(構文チェック)とPrettier(コード整形)を導入する手順を実行する。
+http://localhost:3000 へアクセスすると、Reactの最初のページが表示されていればOKです。
+
+いつもの開発で利用する`yarn`コマンドは下記のようなものがあります。
+
+```shell
+# 1. 開発環境下でブラウザ確認をする際に利用する
+$ yarn start
+# 2. production用のbuildを生成する際に利用する
+$ yarn build
+# 3. テストコードを実行する際に利用する
+$ yarn test
+# 4. create-react-appの管理から抜け出してnode_modulesへに必要なmoduleを全てインストールされて単独で動作させる際に利用する
+$ yarn eject
+```
+
+__【参考】__
+
++ [Reactの基礎【環境構築編】](https://zenn.dev/web_tips/articles/abad1a544f3643)
+
+そして次にESLint(構文チェック)とPrettier(コード整形)を導入する手順を実行します。
 
 ESLintを導入します。
 
@@ -100,4 +127,3 @@ Prettier導入が完了したら、`.prettierrc`を新規作成し、まずは�
 __【参考】__
 
 + [create-react-appでReactとTypeScript環境を構築](https://mo-gu-mo-gu.com/create-react-app-typescript/)
-
